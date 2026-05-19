@@ -7,6 +7,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Root route for browser access
+app.get('/', (req, res) => {
+  res.send('SmartComplaintSystem backend is running');
+});
+
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/complaints', require('./routes/complaints'));
