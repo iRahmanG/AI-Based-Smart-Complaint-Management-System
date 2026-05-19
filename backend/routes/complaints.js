@@ -6,34 +6,27 @@ const auth = require('../middleware/authMiddleware');
 // GET complaints (filtered by user unless admin)
 router.get('/', auth, async (req, res) => {
   try {
-    let filter = {};
-    // If the user is a citizen, only show their own complaints
+    const filter = {};
     if (req.user.role !== 'admin') {
       filter.user = req.user.userId;
     }
     const complaints = await Complaint.find(filter).sort({ createdAt: -1 });
     res.json(complaints);
   } catch (err) {
-    res.status(500).json({ message: 'Server Error' });
-  }
-});
-
-// GET single complaint by ID
-router.get('/:id', async (req, res) => {
-  try {
-    const complaint = await Complaint.findById(req.params.id);
-    if (!complaint) return res.status(404).json({ message: 'Complaint not found' });
-    res.json(complaint);
-  } catch (err) {
+    console.error(err);
     res.status(500).json({ message: 'Server Error' });
   }
 });
 
 // SEARCH complaints by keyword/location/category/status
-router.get('/search/query', async (req, res) => {
+router.get('/search/query', auth, async (req, res) => {
   try {
     const { q, location, category, status } = req.query;
-    let filter = {};
+    const filter = {};
+
+    if (req.user.role !== 'admin') {
+      filter.user = req.user.userId;
+    }
 
     if (q) {
       filter.$or = [
@@ -49,6 +42,22 @@ router.get('/search/query', async (req, res) => {
     const complaints = await Complaint.find(filter).sort({ createdAt: -1 });
     res.json(complaints);
   } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
+
+// GET single complaint by ID
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const complaint = await Complaint.findById(req.params.id);
+    if (!complaint) return res.status(404).json({ message: 'Complaint not found' });
+    if (req.user.role !== 'admin' && complaint.user?.toString() !== req.user.userId) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+    res.json(complaint);
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ message: 'Server Error' });
   }
 });
@@ -88,14 +97,17 @@ router.post('/', auth, async (req, res) => {
 // PUT update complaint status (admin/auth)
 router.put('/:id', auth, async (req, res) => {
   try {
-    const updates = req.body;
-    let complaint = await Complaint.findById(req.params.id);
+    const complaint = await Complaint.findById(req.params.id);
     if (!complaint) return res.status(404).json({ message: 'Complaint not found' });
+    if (req.user.role !== 'admin' && complaint.user?.toString() !== req.user.userId) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
 
-    Object.assign(complaint, updates);
+    Object.assign(complaint, req.body);
     await complaint.save();
     res.json(complaint);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: 'Server Error' });
   }
 });
@@ -105,9 +117,14 @@ router.delete('/:id', auth, async (req, res) => {
   try {
     const complaint = await Complaint.findById(req.params.id);
     if (!complaint) return res.status(404).json({ message: 'Complaint not found' });
+    if (req.user.role !== 'admin' && complaint.user?.toString() !== req.user.userId) {
+      return res.status(403).json({ message: 'Access denied' });
+    }
+
     await Complaint.findByIdAndDelete(req.params.id);
     res.json({ message: 'Complaint removed successfully.' });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ message: 'Server Error' });
   }
 });
