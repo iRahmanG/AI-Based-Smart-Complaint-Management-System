@@ -1,23 +1,124 @@
 # CitizenCare AI - Smart Complaint Management System
 
-A production-grade AI-powered Smart Complaint Management System designed for citizens to register and track public issues online. Built with the MERN stack (MongoDB, Express, React, Node.js) and Tailwind CSS.
+AI-powered Smart Complaint Management System developed using the MERN Stack for citizens to register, track, and manage complaints online.
 
-## Features
-- **Citizen Dashboard**: Track submitted, pending, and resolved complaints.
-- **AI Integration (Gemini 2.5 Flash)**: Automatically analyzes complaints to assign priority, route to the correct department, generate summaries, and assess urgency/sentiment.
-- **Real-time Tracking**: Search by ID, keyword, or title to view a detailed progress timeline.
-- **Modern UI**: Fully responsive glassmorphism design built with Tailwind CSS.
+---
 
-## Setup Instructions
+## Project Overview
 
-### Backend
-1. cd \`backend\`
-2. npm install
-3. Create \`.env\` with \`PORT=5000\`, \`MONGODB_URI\`, \`OPENROUTER_API_KEY\`, \`JWT_SECRET\`
-4. node index.js
+Smart Complaint System is a full-stack web application where citizens can:
 
-### Frontend
-1. cd \`frontend\`
-2. npm install
-3. npm run dev
-# AI-Based-Smart-Complaint-Management-System
+- Register complaints online
+- Track complaint status
+- Receive AI-based complaint analysis
+- Get department recommendations
+- View complaint summaries
+- Receive automated responses
+
+The application uses:
+
+- React.js for frontend
+- Node.js + Express.js for backend
+- MongoDB for database
+- JWT Authentication for security
+- AI APIs for complaint analysis
+
+---
+
+# Features
+
+## Authentication
+- User Signup
+- User Login
+- JWT Authentication
+- Protected Routes
+- Password Hashing using bcrypt
+
+---
+
+## Complaint Management
+- Add complaints
+- View all complaints
+- Update complaint status
+- Track complaint progress
+- Search complaints by location
+- Filter complaints by category
+
+---
+
+## AI Features
+- Complaint Priority Detection
+- Department Recommendation
+- AI-generated Summary
+- Auto-generated Response
+- Complaint Urgency Detection
+
+---
+
+# Tech Stack
+
+## Frontend
+- React.js
+- Tailwind CSS
+- Axios
+- React Router DOM
+
+## Backend
+- Node.js
+- Express.js
+- JWT
+- bcryptjs
+- Mongoose
+
+## Database
+- MongoDB Atlas
+
+## AI Integration
+- Gemini API / OpenAI API
+
+## Deployment
+- Render https://fai-based-smart-complaint-management.onrender.com/
+
+---
+
+# Folder Structure
+
+```bash
+├── backend/
+│   │
+│   ├── middleware/
+│   │   └── authMiddleware.js
+│   │
+│   ├── models/
+│   │   ├── Complaint.js
+│   │   └── User.js
+│   │
+│   ├── routes/
+│   │   ├── ai.js
+│   │   ├── auth.js
+│   │   └── complaints.js
+│   │
+│   ├── .env
+│   ├── index.js
+│   ├── package.json
+│   └── package-lock.json
+│
+├── frontend/
+│   │
+│   ├── public/
+│   │
+│   ├── src/
+│   │   │
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │
+│   │   └── pages/
+│   │       ├── Analytics.jsx
+│   │       ├── ComplaintDetail.jsx
+│   │       ├── Dashboard.jsx
+│   │       ├── LandingPage.jsx
+│   │       ├── Login.jsx
+│   │       ├── MyComplaints.jsx
+│   │       └── NewComplaint.jsx
+│
+└── README.md
