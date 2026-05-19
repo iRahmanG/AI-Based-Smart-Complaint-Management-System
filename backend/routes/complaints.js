@@ -3,10 +3,15 @@ const router = express.Router();
 const Complaint = require('../models/Complaint');
 const auth = require('../middleware/authMiddleware');
 
-// GET all complaints (sorted newest first)
-router.get('/', async (req, res) => {
+// GET complaints (filtered by user unless admin)
+router.get('/', auth, async (req, res) => {
   try {
-    const complaints = await Complaint.find().sort({ createdAt: -1 });
+    let filter = {};
+    // If the user is a citizen, only show their own complaints
+    if (req.user.role !== 'admin') {
+      filter.user = req.user.userId;
+    }
+    const complaints = await Complaint.find(filter).sort({ createdAt: -1 });
     res.json(complaints);
   } catch (err) {
     res.status(500).json({ message: 'Server Error' });
@@ -49,7 +54,7 @@ router.get('/search/query', async (req, res) => {
 });
 
 // POST create new complaint (with full AI fields)
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
   try {
     const { name, email, title, description, category, location,
             priority, department, aiSummary, aiResponse, urgency, sentiment } = req.body;
@@ -68,7 +73,8 @@ router.post('/', async (req, res) => {
       aiSummary: aiSummary || '',
       aiResponse: aiResponse || '',
       urgency: urgency || '',
-      sentiment: sentiment || ''
+      sentiment: sentiment || '',
+      user: req.user.userId
     });
 
     const complaint = await newComplaint.save();

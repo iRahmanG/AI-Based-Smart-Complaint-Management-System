@@ -19,6 +19,7 @@ const ComplaintSchema = new mongoose.Schema({
   aiResponse: { type: String },
   urgency: { type: String },
   sentiment: { type: String },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   createdAt: { type: Date, default: Date.now }
 });
 
