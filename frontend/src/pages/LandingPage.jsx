@@ -85,6 +85,97 @@ const LandingPage = () => {
         </div>
       </div>
 
+      {/* How it Works Section */}
+      <div id="how-it-works" className="py-24 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">How It Works</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">A simple, transparent, and efficient process to get your civic issues resolved.</p>
+          </div>
+          
+          <div className="relative">
+            {/* Connecting line */}
+            <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
+            
+            <div className="grid md:grid-cols-4 gap-8 relative z-10">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white border-4 border-primary-100 text-primary-600 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-6 shadow-sm">1</div>
+                <h3 className="font-bold text-slate-900 mb-2">Register</h3>
+                <p className="text-sm text-slate-500">Sign up and submit your complaint with location and photos.</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white border-4 border-indigo-100 text-indigo-600 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-6 shadow-sm">2</div>
+                <h3 className="font-bold text-slate-900 mb-2">AI Routing</h3>
+                <p className="text-sm text-slate-500">Our engine instantly categorizes and assigns it to the right department.</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white border-4 border-amber-100 text-amber-600 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-6 shadow-sm">3</div>
+                <h3 className="font-bold text-slate-900 mb-2">In Progress</h3>
+                <p className="text-sm text-slate-500">Track the live status as government workers resolve the issue.</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white border-4 border-emerald-100 text-emerald-600 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-6 shadow-sm">4</div>
+                <h3 className="font-bold text-slate-900 mb-2">Resolved</h3>
+                <p className="text-sm text-slate-500">Get notified the moment your public issue is fixed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <div id="testimonials" className="py-24 bg-slate-50 border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">Loved by Citizens</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">See what your neighbors are saying about the new AI complaint system.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="glass-card p-8 bg-white">
+              <div className="flex text-amber-400 mb-4">
+                ★ ★ ★ ★ ★
+              </div>
+              <p className="text-slate-600 italic mb-6">"I reported a pothole in my neighborhood and it was fixed within 48 hours. The AI told me exactly who was coming and when. Incredible transparency!"</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-700 font-bold">SM</div>
+                <div>
+                  <p className="font-bold text-slate-900 text-sm">Sarah Mitchell</p>
+                  <p className="text-xs text-slate-500">Resident, District 4</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="glass-card p-8 bg-white">
+              <div className="flex text-amber-400 mb-4">
+                ★ ★ ★ ★ ★
+              </div>
+              <p className="text-slate-600 italic mb-6">"No more waiting on hold for hours with city hall. I just take a picture, write two sentences, and the AI handles routing it to the water department."</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-700 font-bold">DR</div>
+                <div>
+                  <p className="font-bold text-slate-900 text-sm">David Rodriguez</p>
+                  <p className="text-xs text-slate-500">Local Business Owner</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="glass-card p-8 bg-white">
+              <div className="flex text-amber-400 mb-4">
+                ★ ★ ★ ★ ★
+              </div>
+              <p className="text-slate-600 italic mb-6">"The timeline tracker is brilliant. I knew exactly when the streetlights were scheduled to be repaired. This is how government should work."</p>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-700 font-bold">EP</div>
+                <div>
+                  <p className="font-bold text-slate-900 text-sm">Elena Patel</p>
+                  <p className="text-xs text-slate-500">Community Organizer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Footer */}
       <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
